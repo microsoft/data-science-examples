@@ -14,7 +14,8 @@
 
 # COMMAND ----------
 
-
+#This is the example to load a sklearn model from pkl file and use it to score mini batches of data from Spark Streaming.
+#But the dataset does not need to be streaming, it can be any Spark dataset
 df_stream = spark.readStream.format("delta").table("events")
 df_stream.withWatermark("aiv_epoch_start", "10 minutes").registerTempTable("amazon_msess_events")
 from pyspark.sql.types import *
@@ -31,7 +32,7 @@ jdbcUsername =''
 jdbcPassword = ''
 table = ''
 
-jdbcDatabase = "cdnctllog"
+jdbcDatabase = "DBname"
 jdbcPort = 1433
 jdbcUrl = "jdbc:sqlserver://{0}:{1};database={2}".format(jdbcHostname, jdbcPort, jdbcDatabase)
 print(jdbcUrl)
@@ -146,6 +147,8 @@ output.registerTempTable("prediction_out")
 # COMMAND ----------
 
 
+#This Example use the Azure's Anomaly Finder API to score against Spark data in a batch fashion.
+#By doing this, we can score records in parallel for supposed to be real time API.
 
 #This function has input of a spark data frame which include mulitple variables aligned in the same timeline to test for anomalies simultaneously
 # @columns: This is the list of numeric column to detect anomaly
