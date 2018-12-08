@@ -1,5 +1,12 @@
 # Databricks notebook source
 # MAGIC %md # Batch Scoring ML Model with Spark Pandas UDF
+# MAGIC 
+# MAGIC After you train your ML model, how do you use it to perform batch scoring of a very large dataset?  How would you do this in parallel to minimize scoring time?.
+# MAGIC If you trained your model with Spark ML then this is not a problem as Spark ML model is designed to score Spark distributed data objects. However, if Spark ML is not what you used due to its limitation and your model happens to be SKlearn or a Tensorflow model or  is in the form of published web service (your own model or a cognitive API) then there's no straight forward way to do this.
+# MAGIC  
+# MAGIC In this post, I'll show two examples of how batch scoring can be applied using the relatively new Pandas UDF function in Spark 2.x:
+# MAGIC Batch scoring from cognitive API (or your own ML model published as API)
+# MAGIC Batch scoring from persisted SKlearn model
 
 # COMMAND ----------
 
